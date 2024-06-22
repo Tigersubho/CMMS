@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800;900&display=swap');
+
+nav{
+    position: absolute;
+    top:0;
+    left: 0;
+    right:0;
+    border-bottom: 1px solid #e6e4e4;
+    padding: 15px;
+}
+nav h2{ 
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    padding-left: 50px;
+    font-weight: 700;
+    letter-spacing:1px ;
+    color: #2a2185;
+}
+.landing{
+    display: flex;
+    position: relative;
+    margin-top: 15%;
+  }
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .card {
+    --main-color: #fff;
+    --submain-color: #ccc;
+    --bg-color: #2a2185;
+    font-family:'Poppins', sans-serif;
+    position: relative;
+    margin: 0 30px;
+    width: 300px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: var(--main-color);
+    transition: .5s;
+    box-shadow: rgba(21, 4, 255, 0.062) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  }
+  .card:hover {
+    transform: translate(0, -10px);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  }
+  .card:hover .card__img img{
+    opacity: 0.8;
+  } 
+  .card__img {
+    height: 180px;
+    width: 100%;
+  }
+  
+  .card__img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+    transition: 0.2s;
+    opacity: 1;
+  }
+  
+  .card__avatar {
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    background: #fff;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: calc(46% - 62px);
+  }
+  
+  .card__avatar img {
+    width: 100px;
+    height: 100px;
+  }
+  .card__title {
+    margin-top: 0px;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--bg-color);
+  }
+  
+  .card__wrapper{
+    margin-top: 20px;
+  }
+  .card__btn {
+    margin-top: 25px;
+    width: 76px;
+    height: 31px;
+    text-decoration: none;
+    padding: 10px;
+    border: 2px solid var(--bg-color);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--bg-color);
+    background: var(--main-color);
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  
+  .card__btn-solid {
+    background: var(--bg-color);
+    text-decoration: none;
+    color: var(--main-color);
+  }
+  
+  .card__btn:hover {
+    background: var(--bg-color);
+    color: var(--main-color);
+  }
+  
+  .card__btn-solid:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+  }
+  .footer{
+    position: fixed;
+    bottom: 0px;
+    padding: 10px;
+  }
+  .footer p{
+    color: #000;
+    font-weight: 700;
+  }
+  .footer p a{
+    color: rgb(0, 36, 179);
+  }
+  @media (max-width: 1200px){
+    nav{
+        position: absolute;
+        top:0;
+        left: 0;
+        right:0;
+        border-bottom: 1px solid #e6e4e4;
+        padding: 15px;
+        }
+        .landing{
+            position: relative;
+            top: 100px;
+            display: flex;
+            padding-bottom: 150px;
+        }
+        nav h2{ 
+            font-size: 25px;
+            padding-left: 20px;
+            font-weight: 700;
+            letter-spacing:1px ;
+            color: #2a2185;
+        }
+        .card{
+            margin: 20px;
+            width: 280px;
+            height: 280px;
+        }
+  }
+  @media (max-width: 950px){
+    nav{
+        position: absolute;
+        top:0;
+        left: 0;
+        right:0;
+        border-bottom: 1px solid #e6e4e4;
+        padding: 15px;
+        }
+        .landing{
+            position: relative;
+            top: 100px;
+            display: block;
+            padding-bottom: 150px;
+        }
+        nav h2{ 
+            font-size: 25px;
+            padding-left: 20px;
+            font-weight: 700;
+            letter-spacing:1px ;
+            color: #2a2185;
+        }
+        .card{
+            margin: 50px;
+            width: 300px;
+            height: 280px;
+        }
+  }
+  @media (max-width: 480px){
+    nav{
+    position: absolute;
+    top:0;
+    left: 0;
+    right:0;
+    border-bottom: 1px solid #e6e4e4;
+    padding: 15px;
+    }
+    .landing{
+        position: relative;
+        top: 100px;
+        display: block ;
+        padding-bottom: 150px;
+    }
+    nav h2{ 
+        font-size: 20px;
+        padding-left: 20px;
+        font-weight: 700;
+        letter-spacing:1px ;
+        color: #2a2185;
+    }
+    .card{
+        margin: 20px;
+    }
+  }

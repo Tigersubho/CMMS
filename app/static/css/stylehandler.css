@@ -1,0 +1,835 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 269px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+}
+.navigation.active {
+  width: 80px;
+}
+.assets.active {
+left:-215px;
+}
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+.assets.active {
+  left:-215px;
+  }
+  .assets img{
+    height: 240px
+  }
+  .assets{
+    position: relative;
+    top: 550px;
+    left:-26px;
+    transition: 0.5s;
+  }
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.user {
+  position: relative;
+  top:10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 90%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 20fr 1fr;
+  grid-gap: 30px;
+  left:50px;
+  margin-top: 50px;
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  background: var(--white);
+  min-height: 0px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.delivered {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+ .pending{
+  padding: 2px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+ .status-link {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.details a{
+text-decoration:none;
+}
+.button1 {
+  padding: 1em 1.5em;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+  transition: all 500ms;
+  font-size: 15px;
+  position: relative;
+  left: 250px;
+  overflow: hidden;
+  outline: 2px solid var(--blue);
+}
+
+.button1:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid var(--blue);
+  box-shadow: 4px 5px 17px -4px var(--blue);
+}
+
+.button1::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--blue);
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.button1:hover::before {
+  width: 250%;
+}
+
+/* Style for the accordion-trigger */
+.accordion-trigger {
+  cursor: pointer;
+  background-color: #fff;
+  padding: 30px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Style for the accordion-content (hidden by default) */
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000; /* Change the color as needed */
+  margin-right: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+
+/* Rotate the arrow when the accordion is open */
+.rotate {
+  transform: rotate(180deg);
+}
+.signup-form {
+  position: relative;
+  display: none;
+  width: 60%;
+  margin-top: 20%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+.product {
+	width: 30%;
+	margin: 30px;
+}
+.form-group {
+	width: 100%;
+	margin-top: 30px;
+}
+.value-button {
+  display: inline-block;
+  border: 1px solid #8277ff;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 11px 0;
+  background: #8277ff;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+ #decrease {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+ #increase {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+ #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input#number {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #8277ff;
+  border-bottom: 1px solid #8277ff;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    color: #2a2185;
+}
+
+g{
+  stroke: #8de02c;
+}
+.button {
+  margin-left: 20px;
+  position: relative;
+  padding: 6px 3px;
+  gap: 8px;
+  height: 34px;
+  width: 140px;
+  border: none;
+  background-color: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 1s all;
+}
+.lable {
+  line-height: 10px;
+  font-size: 17px;
+  color:#8de02c;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+.button:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.signup-form .h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+input, select {
+  display: inline-block;
+  transition: 0.15s ease-out all;
+  outline: none;
+  background-color: transparent;
+}
+
+.fancy-form {
+  margin: 5px auto;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-between;
+}
+.fancy-form.active{
+  width: 80%;
+}
+.fancy-text-form {
+  margin: 10px 10px;
+  position: relative;
+}
+
+.fancy-text-form > input,
+.fancy-text-form > select{
+  border-bottom-width: 2px;
+  box-shadow: none;
+  outline: none;
+  padding: 20px 0px;
+  font-size: 15px;
+}
+
+.white-blue-button {
+  color: var(--blue);
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: transparent;
+  border: 2px solid var(--blue);
+  transition: 0.15s all ease-in-out;
+}
+.message{
+    border: none;
+  border-bottom: 2px solid var(--blue);
+  width: 650px;
+  height: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(114, 150, 234, 0.5) 3px 3px 20px 0px inset, rgba(40, 140, 255, 0) -3px -3px 6px 1px inset;
+}
+.message:focus {
+  border: none;
+  border-bottom: 2px solid var(--blue);
+}
+::placeholder{
+  padding: 5px;
+  color: #777;
+  font-size: 15px;
+}
+.white-blue-box {
+  color: var(--blue);
+  width: 280px;
+  border: 2px solid transparent;
+  border-bottom-color: #281abcab;
+  display: inline-block;
+  transition: 0.15s ease-out all;
+}
+
+.white-blue-select {
+  color: var(--blue);
+  font-size: 20px;
+  width: 280px;
+  border: 2px solid transparent;
+  border-bottom-color: #281abcab;
+  -moz-appearance:  none;
+}
+
+.fancy-text-form > input + label,
+.fancy-text-form > select + label{
+  position: absolute;
+  color: #777;
+  left: 0px;
+  top: 25%;
+  pointer-events: none;
+  transition: 0.15s ease-out all;
+}
+
+.white-blue-button:hover{
+  color: #fff;
+  background-color: var(--blue);
+}
+.signup-form.active{
+  width: 75%;
+}
+.button1 {
+  padding: 1em 1.5em;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+  transition: all 500ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  margin-left: 20px;
+  outline: 2px solid var(--blue);
+}
+
+.button1:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid var(--blue);
+  box-shadow: 4px 5px 17px -4px var(--blue);
+}
+
+.button1::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--blue);
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.button1:hover::before {
+  width: 250%;
+}
+
+.white-blue-box:focus + label,
+.white-blue-select:focus + label,
+input.focusFancy + label,
+select.focusFancy + label{
+  top: -10px;
+  font-size: 12px;
+  color: #999;
+}
+
+.error {
+  border-bottom-color: red;
+}
+
+
+
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 1024px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .details {
+    position: relative;
+    width: 100%;
+    margin-left: 50px;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+  }
+  .signup-form{
+    position: relative;
+    top: 120px;
+    margin-left: 60px;
+    width: 100%
+  }
+  .fancy-form{
+    height: 360px;
+  }
+  .white-blue-box{
+    top: 20%;
+  }
+  .button1{
+    top: 120px;
+    left:-400px;
+  }
+
+  .message{
+    width: 700px
+  }
+  .white-blue-box{
+    width:400px;
+  }
+}
+
+@media (max-width: 861px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+  }
+  .signup-form{
+    position: relative;
+    top: 150px;
+    margin-left: 40px;
+    width: 100%
+  }
+  .fancy-form{
+    height: 360px;
+  }
+  .button1{
+    top: 0px;
+    left:300px;
+  }
+
+  .message{
+    width: 700px
+  }
+  .white-blue-box{
+    width:400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+
+  .details {
+    position: relative;
+    width: 95%;
+    margin-left: -60px;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+  }
+  .signup-form{
+    position: relative;
+    top: 150px;
+    margin-left: 0px;
+    width: 95%
+  }
+  .fancy-form{
+    height: 360px;
+  }
+  .button1{
+    left:240px;
+  }
+
+  .message{
+    width: 420px
+  }
+  .white-blue-box{
+    width:300px ;
+  }
+}
+
+@media (max-width: 460px) {
+  body{
+    overflow-x: hidden;
+  }
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+
+  img {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .assets img{
+    position: relative;
+    height: 280px;
+    left: 32px;
+    top: -200px
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 500px;
+    top: 100px;
+    left: initial;
+  }
+
+  .details {
+    position: relative;
+    width: 100%;
+    margin-left: -50px;
+    top: 0px;
+    top:-50px;
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+  }
+  .signup-form{
+    position: relative;
+    top: 200px;
+    margin-left:0px;
+    width: 95%
+  }
+  .fancy-form{
+    height: 500px;
+    margin:10px 0;
+  }
+  .button1{
+    left:100px
+  }
+
+  .message{
+    width: 300px
+  }
+  .white-blue-box{
+    width:300px ;
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMMS</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/static/css/stylehandler.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                      <span class="icon">
+                        <img src="/static/imgs/customer01.jpg" class="user" alt="">
+                    </span>
+                        <span class="title">{{name.hname}} </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/handler">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Raise Your Ticket</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="logout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="assets">
+              <img src="/static/imgs/Blue-Wave-PNG-File.webp" alt="">
+            </div>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+           <div class="section">
+            <!-- ================ Order Details List ================= -->
+           <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Your Tickets <span style="color: green; font-weight:400; font-size:15px "> (Click on Status of your ticket for more details) </span></h2>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                        <td>Ticket ID</td>
+                        <td>User Dept.</td>
+                        <td>User Name</td>
+
+                        <td>Title of Issue</td>
+                        <td>Date</td>
+                        <td>Description</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  {% for ticket in hid %}
+<tr>
+    <td>{{ ticket.TID }}</td>
+    <td>{{ ticket.dept }}</td>
+    <td>{{ ticket.uname }}</td>
+
+    <td>{{ ticket.title }}</td>
+    <td>{{ ticket.created_at }}</td>
+    <td>{{ ticket.description }}</td>
+    <td><a href="#" class="status-link" data-tid="{{ ticket.TID }} ">{{ticket.status}}</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+<div id="sec01"></div>
+<div class="signup-form">
+    <h2>Ticket details
+</h2>
+    <form class="fancy-form" method="post" action="/status">
+    {% csrf_token %}
+    <div class="fancy-text-form">
+        <lebel><strong>Long Description of Issue</strong></lebel>
+        <input type="text" id="ticket-description" name="desc" class="message" placeholder="Long description about your problem" />
+    </div>
+    <div class="fancy-text-form">
+
+        <input type="text" id="ticket-title" name="title" placeholder="Short title of issue" class="white-blue-box form-signup" />
+    </div>
+    <div class="fancy-text-form">
+        <label>Want to increase or decrease time? [In hours] </label>
+        <div class="form-group">
+            <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+            <input type="number" name="time" id="number" value="24" />
+            <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+        </div>
+    </div>
+    <div class="fancy-text-form">
+        <input type="text" id="" name="remark" placeholder="Your Remark" class="white-blue-box form-signup" />
+    </div>
+    <div class="fancy-text-form">
+        <input type="text" id="selected-tid" name="TID" value="" style="display: none;" /> <!-- Hidden field to store selected TID -->
+    </div>
+    <div class="fancy-text-form">
+        <select name="status" id="g" name="status" class="white-blue-select form-signup">
+            <option type="">Status</option>
+            <option value="a">Passed</option>
+            <option value="b">In progress</option>
+            <option value="c">Completed</option>
+            <option value="d">Pending</option>
+        </select>
+    </div>
+    <div class="fancy-text-form">
+        <button type="submit" class="button1">
+            Submit
+        </button>
+    </div>
+</form>
+
+</div>
+
+<script>
+    // JavaScript to handle clicking on status links
+    const statusLinks = document.querySelectorAll('.status-link');
+    const selectedTID = document.getElementById('selected-tid');
+    const ticketTitle = document.getElementById('ticket-title');
+    const ticketDescription = document.getElementById('ticket-description');
+    const signupForm = document.querySelector('.signup-form');
+    statusLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            setTimeout(() => {
+             if (signupForm.style.display === 'none' || signupForm.style.display === '') {
+            signupForm.style.display = 'block';
+        }},3000);
+            const tid = this.getAttribute('data-tid');
+            selectedTID.value = tid;
+
+            // Fetch ticket details based on tid and update form fields
+            fetch(`/get_ticket_details/${tid}`)
+                .then(response => response.json())
+                .then(data => {
+                    ticketTitle.value = data.title;
+                    ticketDescription.value = data.description;
+                });
+        });
+    });
+</script>
+
+<script>
+  $(document).ready(function() {
+      // Hide the table content and recentOrders section initially
+      $(".accordion-content").hide();
+
+      $(".accordion-trigger").click(function() {
+          $(".accordion-content").slideToggle();
+          $(".recentOrders").slideToggle(); // Toggle the recentOrders section
+          $(this).find('.arrow').toggleClass('rotate');
+      });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Hide the table content initially
+        $(".accordion-content").hide();
+
+        // Toggle the table content when the heading is clicked
+        $(".accordion-trigger").click(function() {
+            $(".accordion-content").slideToggle();
+        });
+    });
+</script>
+            <script>
+    function decreaseValue() {
+        const numberInput = document.getElementById('number');
+        let currentValue = parseInt(numberInput.value, 10);
+        if (!isNaN(currentValue) && currentValue > 0) {
+            numberInput.value = currentValue - 1;
+        }
+    }
+
+    function increaseValue() {
+        const numberInput = document.getElementById('number');
+        let currentValue = parseInt(numberInput.value, 10);
+        if (!isNaN(currentValue)) {
+            numberInput.value = currentValue + 1;
+        }
+    }
+</script>
+    <!-- =========== Scripts =========  -->
+    <script src="/static/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

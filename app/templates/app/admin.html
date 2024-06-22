@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMMS_Admin</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="static/css/styleadmin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                      <span class="icon">
+                        <img src="static/imgs/customer01.jpg" class="user" alt="">
+                    </span>
+                        <span class="title">{{name.name}}</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Raise Your Ticket</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+           <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>See Tickets </h2>
+
+                    <form method="post" action="/download">
+                            {% csrf_token %}
+
+                         <select id="filter" name="filter">
+                             <option value="value">Filter</option>
+                              <option value="all">All</option>
+                              <option value="received">Received</option>
+                              <option value="On Going">On going</option>
+                             <option value="Pending">Pending</option>
+                              <option value="Completed">Completed</option>
+</select>
+
+                  <button type="btn" class="button1">
+                    Download
+                </button>
+                    </form>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                        <td>Ticket ID</td>
+                        <td>Issuer</td>
+                        <td>Dept. Of Issuer</td>
+                        <td>Handler Name</td>
+                        <td>Title of Issue</td>
+                        <td>Issue Description</td>
+                        <td>Probable time</td>
+                        <td>Remark </td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+
+                <tbody id="ticketTableBody">
+                  {% for ticket in ticket %}
+
+                    <tr>
+                         <td>{{ticket.TID}}</td>
+                        <td>{{ticket.uname}}</td>
+                        <td>{{ticket.dept}}</td>
+                        <td>{{ticket.hname}}</td>
+                        <td>{{ticket.title}}</td>
+                        <td>{{ticket.description}}</td>
+                        <td>{{ticket.time}}</td>
+                        <td>{{ticket.hreason}}</td>
+                        <td>{{ticket.status}}</td>
+                    </tr>
+                    {% endfor%}
+
+
+
+                </tbody>
+                </table>
+            </div>
+    </div>
+        </div>
+    </div>
+
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+   // Select the filter element and the table body
+   var filter = document.getElementById("filter");
+   var tableBody = document.getElementById("ticketTableBody");
+
+   // Add an event listener to the filter element
+   filter.addEventListener("change", function () {
+      var selectedStatus = filter.value; // Get the selected status
+
+      // Loop through each row in the table body
+      for (var i = 0; i < tableBody.rows.length; i++) {
+         var row = tableBody.rows[i];
+         var statusCell = row.cells[8]; // Assuming the status cell is the 9th cell (index 8)
+
+         // Check if the selected status matches the row's status
+         if (selectedStatus === "all" || selectedStatus === statusCell.textContent) {
+            row.style.display = ""; // Show the row
+         } else {
+            row.style.display = "none"; // Hide the row
+         }
+      }
+   });
+});
+</script>
+
+<script src="/static/js/main.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
